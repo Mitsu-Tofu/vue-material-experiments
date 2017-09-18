@@ -1,5 +1,5 @@
 <template>
-  <md-portal class="md-overlay" :class="{ 'md-fixed' : mdFixed}" v-on="$listeners" md-transition-name="md-overlay" :md-if="mdVisible"></md-portal>
+  <md-portal class="md-overlay" :class="{ 'md-fixed' : mdFixed}" :md-target-el="targetEl" v-on="$listeners" md-transition-name="md-overlay" :md-if="mdVisible" v-if="!mdAttachToParent || targetEl"></md-portal>
 </template>
 
 <script>
@@ -11,8 +11,19 @@
       MdPortal
     },
     props: {
+      mdAttachToParent: Boolean,
       mdVisible: Boolean,
       mdFixed: Boolean
+    },
+    data: () => ({
+      targetEl: null
+    }),
+    mounted () {
+      if (this.mdAttachToParent) {
+        this.targetEl = this.$el.parentNode.parentNode
+      } else {
+        this.targetEl = document.body
+      }
     }
   }
 </script>

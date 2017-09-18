@@ -13,11 +13,15 @@
       mdIf: Boolean,
       mdTransitionName: String,
       mdTransitionAppear: Boolean,
-      mdFollowEl: HTMLElement
+      mdFollowEl: HTMLElement,
+      mdTargetEl: {
+        type: HTMLElement,
+        default: () => document.body
+      }
     },
     data: () => ({
       leaveTimeout: null,
-      mdTargetEl: document.body
+      targetEl: null
     }),
     computed: {
       leaveClass () {
@@ -46,7 +50,7 @@
       }
     },
     created () {
-      this.$options._parentElm = this.mdTargetEl
+      this.$options._parentElm = this.mdTargetEl || document.body
     },
     beforeDestroy () {
       if (this.$el.classList) {
