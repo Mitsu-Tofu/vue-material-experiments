@@ -1,79 +1,18 @@
 <template>
-  <transition name="md-overlay" @before-enter="setActive" @after-leave="detachFromBody">
-    <div class="md-overlay" :class="overlayClasses" v-if="isVisible" @click="$emit('click', $event)"></div>
-  </transition>
+  <md-portal class="md-overlay" :class="{ 'md-fixed' : mdFixed}" v-on="$listeners" md-transition-name="md-overlay" :md-if="mdVisible"></md-portal>
 </template>
 
 <script>
+  import MdPortal from 'core/MdPortal/MdPortal'
+
   export default {
     name: 'MdOverlay',
+    components: {
+      MdPortal
+    },
     props: {
       mdVisible: Boolean,
-      mdBodyAttach: Boolean
-    },
-    data: () => ({
-      noop: null,
-      overlayElement: null,
-      isVisible: false,
-      isActive: false
-    }),
-    computed: {
-      overlayClasses () {
-        return {
-          'md-active': this.isActive,
-          'md-fixed': this.mdBodyAttach
-        }
-      }
-    },
-    watch: {
-      mdVisible (visible) {
-        this.controlVisibility(visible)
-      }
-    },
-    methods: {
-      controlVisibility (visible) {
-        window.requestAnimationFrame(() => {
-          if (visible) {
-            this.attachToBody()
-          }
-
-          this.isVisible = visible
-        })
-      },
-      async setActive () {
-        await this.$nextTick()
-        this.isActive = true
-      },
-      removeNode (content) {
-        if (content.parentNode.contains(content)) {
-          content.parentNode.removeChild(content)
-        }
-      },
-      detachFromBody () {
-        let container = this.mdBodyAttach ? document.body : this.parentElement
-
-        if (container.contains(this.overlayElement)) {
-          container.removeChild(this.overlayElement)
-        }
-
-        this.isActive = false
-      },
-      attachToBody () {
-        let container = this.mdBodyAttach ? document.body : this.parentElement
-
-        if (!container.contains(this.overlayElement)) {
-          container.appendChild(this.overlayElement)
-        }
-      }
-    },
-    mounted () {
-      this.overlayElement = this.$el
-      this.parentElement = this.$el.parentNode.parentNode
-      this.removeNode(this.$el)
-
-      if (this.mdVisible) {
-        this.controlVisibility(this.mdVisible)
-      }
+      mdFixed: Boolean
     }
   }
 </script>
@@ -89,25 +28,17 @@
     left: 0;
     z-index: 10;
     background: rgba(#000, .6);
-    opacity: 0;
-    transition: .4s $md-transition-stand-timing;
+    transition: .4s $md-transition-default-timing;
     transition-property: opacity;
     will-change: opacity;
 
     &.md-fixed {
       position: fixed;
     }
+  }
 
-    &.md-active {
-      opacity: 1;
-    }
-
-    &.md-overlay-enter-active {
-      transition: .4s $md-transition-stand-timing;
-    }
-
-    &.md-overlay-leave-active {
-      opacity: 0;
-    }
+  .md-overlay-enter,
+  .md-overlay-leave-active {
+    opacity: 0;
   }
 </style>
