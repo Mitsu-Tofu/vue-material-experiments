@@ -10,6 +10,11 @@ export const routes = [
     component: () => import(/* webpackChunkName: "dialog" */ './pages/Components/Dialog/Dialog.vue')
   },
   {
+    path: '/components/datepicker',
+    name: 'components/datepicker',
+    component: () => import(/* webpackChunkName: "datepicker" */ './pages/Components/Datepicker/Datepicker.vue')
+  },
+  {
     path: '/components/snackbar',
     name: 'components/snackbar',
     component: () => import(/* webpackChunkName: "snackbar" */ './pages/Components/Snackbar/Snackbar.vue')
