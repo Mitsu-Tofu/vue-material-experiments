@@ -73,6 +73,9 @@ export default {
     radio: {
       title: 'Radio'
     },
+    file: {
+      title: 'File'
+    },
     switch: {
       title: 'Switch'
     },
