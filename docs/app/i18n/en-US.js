@@ -46,6 +46,9 @@ export default {
     content: {
       title: 'Content'
     },
+    dialog: {
+      title: 'Dialog'
+    },
     divider: {
       title: 'Divider'
     },

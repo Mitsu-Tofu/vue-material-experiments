@@ -5,6 +5,11 @@ Vue.use(VueRouter)
 
 export const routes = [
   {
+    path: '/components/dialog',
+    name: 'components/dialog',
+    component: () => import(/* webpackChunkName: "dialog" */ './pages/Components/Dialog/Dialog.vue')
+  },
+  {
     path: '/components/snackbar',
     name: 'components/snackbar',
     component: () => import(/* webpackChunkName: "snackbar" */ './pages/Components/Snackbar/Snackbar.vue')
