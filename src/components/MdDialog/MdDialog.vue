@@ -8,8 +8,8 @@
 
 <script>
   import MdComponent from 'core/MdComponent'
-  import MdPortal from 'core/MdPortal/MdPortal'
-  import MdOverlay from 'core/MdOverlay/MdOverlay'
+  import MdPortal from 'components/MdPortal/MdPortal'
+  import MdOverlay from 'components/MdOverlay/MdOverlay'
 
   export default new MdComponent({
     name: 'MdDialog',

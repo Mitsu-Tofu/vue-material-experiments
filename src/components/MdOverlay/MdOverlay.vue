@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import MdPortal from 'core/MdPortal/MdPortal'
+  import MdPortal from 'components/MdPortal/MdPortal'
 
   export default {
     name: 'MdOverlay',

@@ -105,6 +105,11 @@ export const routes = [
     component: () => import(/* webpackChunkName: "input" */ './pages/Components/Input/Input.vue')
   },
   {
+    path: '/components/file',
+    name: 'components/file',
+    component: () => import(/* webpackChunkName: "file" */ './pages/Components/File/File.vue')
+  },
+  {
     path: '/components/list',
     name: 'components/list',
     component: () => import(/* webpackChunkName: "list" */ './pages/Components/List/List.vue')
@@ -153,11 +158,6 @@ export const routes = [
     path: '/ui-elements/typography',
     name: 'ui-elements/typography',
     component: () => import(/* webpackChunkName: "typography" */ './pages/UiElements/Typography/Typography.vue')
-  },
-  {
-    path: '/temp',
-    name: 'temp',
-    component: () => import(/* webpackChunkName: "temp" */ './pages/Temp.vue')
   },
   {
     path: '*',
